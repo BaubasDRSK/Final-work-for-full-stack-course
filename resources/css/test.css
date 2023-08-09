@@ -1,0 +1,45 @@
+h2.headeris {
+    color:rgb(129, 30, 113);
+}
+
+.tag-list li.close-btn {
+    color: rgb(75, 9, 86);
+    cursor: pointer;
+}
+
+.tag-list li.close-btn:hover {
+    color:red;
+}
+
+.info-container{
+    padding: 25px;
+    position: absolute;
+    border-radius: 0 20px 20px 0;
+    /* background-color: green; */
+    box-shadow: 3px 3px 4px grey;
+    color: white;
+    animation: hideMsg 3s forwards;
+}
+
+.info-container.alert-danger {
+    background-color: rgba(169, 51, 51);
+}
+
+.info-container.alert-success {
+    background-color: rgba(67, 168, 89);
+}
+
+.info-container.alert-info {
+    background-color: rgba(11, 58, 84);
+}
+
+.info-container.alert-warning {
+    background-color: rgba(180, 121, 27);
+}
+
+@keyframes hideMsg {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+  }
