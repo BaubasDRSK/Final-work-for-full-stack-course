@@ -70,7 +70,9 @@ class StoryController extends Controller
         }
 
         $story->save();
-        return redirect()->route('stories-edit', [$story])->with('success','Story was added');
+
+        $stories = Story::select('stories.*')->paginate(2)->withQueryString();
+        return redirect()->route('stories-edit', [$story, $stories->lastPage()])->with('success','Story was added');
 
         // return redirect()->route('stories-index')->with('success', 'Storie was edited');
 
@@ -88,8 +90,9 @@ class StoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Story $story)
+    public function edit(Story $story, int $page = 1, Request $request)
     {
+        $request->session()->put('page', $page);
         return view('stories.edit', [
             'story' => $story
         ]);
@@ -129,7 +132,8 @@ class StoryController extends Controller
         }
 
         $story->save();
-        return redirect()->route('stories-index')->with('success', 'Storie was edited');
+
+        return redirect()->route('stories-index',['page'=>$request->session()->get('page')])->with('success', 'Storie was edited');
     }
 
     /**

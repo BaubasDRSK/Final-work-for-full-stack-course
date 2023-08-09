@@ -39,7 +39,7 @@ Route::prefix('stories')->name('stories-')->group(function () {
     Route::get('/create',[Story::class, 'create'])->name('create');
     Route::post('/create', [Story::class, 'store'])->name('store');
 
-    Route::get('/edit/{story}' ,[Story::class, 'edit'])->name('edit');
+    Route::get('/edit/{story}&{page}' ,[Story::class, 'edit'])->name('edit');
     Route::put('/{story}', [Story::class, 'update'])->name('update');
 
     // Route::get('/delete/{client}' ,[Story::class, 'delete'])->name('delete');
@@ -47,7 +47,7 @@ Route::prefix('stories')->name('stories-')->group(function () {
 
 });
 
-
+//TAGS
 Route::prefix('tags')->name('tags-')->group(function () {
 
     Route::get('/{story}', [Tag::class, 'list'])->name('list');
