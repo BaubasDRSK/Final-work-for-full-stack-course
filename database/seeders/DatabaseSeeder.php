@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
 
         foreach (range(1, 12) as $_) {
             DB::table('tags')->insert([
-                'name' => $faker->word()
+                'name' => $faker->unique()->word()
             ]);
         }
 

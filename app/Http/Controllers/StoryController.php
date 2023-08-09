@@ -43,7 +43,7 @@ class StoryController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'title' => 'required|regex:/^[a-zA-Z0-9\s?!@]+$/',
+                'title' => 'required|regex:/^[a-zA-Z0-9\s?!@.,]+$/',
                 'story' => 'required|string|min:1|max:500',
                 'image' => 'nullable|image|mimes:jpeg,png,gif|max:2048',
                 'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
@@ -103,7 +103,7 @@ class StoryController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'title' => 'required|regex:/^[a-zA-Z0-9\s?!@]+$/',
+                'title' => 'required|regex:/^[a-zA-Z0-9\s?!@.,]+$/',
                 'story' => 'required|string|min:1|max:500',
                 'image' => 'nullable|image|mimes:jpeg,png,gif|max:2048',
                 'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',

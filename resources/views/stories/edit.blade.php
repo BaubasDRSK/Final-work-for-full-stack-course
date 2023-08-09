@@ -13,11 +13,11 @@
                             <div class="flex flex-wrap w-full mb-8">
                                 <label for="title" class="w-full text-center text-m font-bold mb-4"> Edit title</label>
                                 <input class='w-full rounded-lg ' type="text" name="title" id="title"
-                                    value="{{ $story->title }}">
+                                    value="{{ old('title')??$story->title }}">
                             </div>
                             <div class="flex flex-wrap w-full mb-8">
                                 <label for="story" class="w-full text-center text-m font-bold mb-4"> Tell us Your story</label>
-                                <textarea class='w-full rounded-lg h-60 overflow-auto' type="text" name="story" id="story">{{ $story->story }} </textarea>
+                                <textarea class='w-full rounded-lg h-60 overflow-auto' type="text" name="story" id="story">{{ old('story')??$story->story }} </textarea>
                             </div>
                             <div class="flex flex-wrap w-full mb-8">
                                 <label class="w-full text-center text-m font-bold mb-4" for="image">You can change main
@@ -34,7 +34,7 @@
                                 <label for="amount" class="w-full text-center text-m font-bold mb-4"> How much money You
                                     need?</label>
                                 <input class='w-full rounded-lg ' type="number" name="amount" min=0 step='0.01' id="amount"
-                                    value="{{ $story->goal_amount }}" required>
+                                    value="{{ old('amount')??$story->goal_amount }}" required>
                             </div>
                             <div class="flex w-full mb-8 justify-center ">
                                 <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
