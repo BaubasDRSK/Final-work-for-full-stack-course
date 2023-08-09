@@ -22,7 +22,7 @@
                             <div class="flex flex-wrap w-full mb-8">
                                 <label class="w-full text-center text-m font-bold mb-4" for="image">You can change main
                                     image</label>
-                                <input type="file" name="image" id="image"
+                                <input type="file" accept="image/*" data-select-image name="image" id="image"
                                     class='block w-full text-m  text-slate-500
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
@@ -30,6 +30,7 @@
                                 file:bg-violet-50 file:text-violet-700
                                 hover:file:bg-violet-100'>
                             </div>
+                            <img id="imagePreview" src="{{ asset('images/'.$story->main_img)  }}" alt="No iage set yet">
                             <div class="flex flex-wrap w-full mb-8">
                                 <label for="amount" class="w-full text-center text-m font-bold mb-4"> How much money You
                                     need?</label>

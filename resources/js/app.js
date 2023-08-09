@@ -1,6 +1,8 @@
 import './bootstrap';
 
 import Tags from './tags';
+import ImageLoader from './imageLoader';
+
 
 import Alpine from 'alpinejs';
 
@@ -12,4 +14,7 @@ window.Alpine = Alpine;
 Alpine.start();
 
 new Tags();
+
+new ImageLoader();
+
 

@@ -12,7 +12,7 @@
                                 <div>
                                     @if ($story->main_img)
                                         <div style="width:200px">
-                                            <img src="./images/{{ $story->main_img }}" alt="main story image" width="200px">
+                                            <img src="{{ asset('images/'.$story->main_img)  }}" alt="main story image" width="200px">
                                         </div>
                                     @else
                                         {{ 'Nothing to see yet...' }}
