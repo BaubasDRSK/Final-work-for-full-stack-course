@@ -11,8 +11,26 @@
                             <div class="flex flex-nowrap gap-6">
                                 <div>
                                     @if ($story->main_img)
-                                        <div style="width:200px">
-                                            <img src="{{ asset('images/'.$story->main_img)  }}" alt="main story image" width="200px">
+                                        <div class="main-img-container" style="width:200px">
+                                            @php
+                                                {{
+                                                    $image = public_path('images/'.$story->main_img);
+                                                    $imageSize = getimagesize($image);
+                                                }}
+                                            @endphp
+                                            <div class="pswp-gallery" id="gallery--individual">
+                                                <a href="{{ asset('images/'.$story->main_img)  }}"
+                                                    data-pswp-width="{{$imageSize[0]}}"
+                                                    data-pswp-height="{{$imageSize[1]}}"
+                                                    data-cropped="true"
+                                                    data-pswp-srcset
+
+                                                    target="_blank">
+                                                    <img src="{{ asset('images/'.$story->main_img)  }}" alt="" />
+
+                                                </a>
+                                            </div>
+
                                         </div>
                                     @else
                                         {{ 'Nothing to see yet...' }}

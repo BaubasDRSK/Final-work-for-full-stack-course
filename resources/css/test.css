@@ -2,6 +2,7 @@ h2.headeris {
     color:rgb(129, 30, 113);
 }
 
+/* Tag X button */
 .tag-list li.close-btn {
     color: rgb(75, 9, 86);
     cursor: pointer;
@@ -11,11 +12,11 @@ h2.headeris {
     color:red;
 }
 
+/* Error and info masseges */
 .info-container{
     padding: 25px;
     position: absolute;
     border-radius: 0 20px 20px 0;
-    /* background-color: green; */
     box-shadow: 3px 3px 4px grey;
     color: white;
     animation: hideMsg 3s forwards;
@@ -35,6 +36,20 @@ h2.headeris {
 
 .info-container.alert-warning {
     background-color: rgba(180, 121, 27);
+}
+
+/* Main img */
+
+.main-img-container{
+    overflow:hidden;
+    border-radius: 25px;
+}
+
+.main-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: 50% 50%;
 }
 
 @keyframes hideMsg {

@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "font-awesome": "^4.7.0",
+        "photoswipe": "^5.3.8",
         "sass": "^1.64.2"
     }
 }
