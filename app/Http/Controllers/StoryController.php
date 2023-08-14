@@ -123,7 +123,7 @@ class StoryController extends Controller
         $story->title = $request->title;
         $story->story = $request->story;
         $story->goal_amount = $request->amount;
-        
+
 
         if ($request->file('image')) {
             $file = $request->file('image');
@@ -147,11 +147,11 @@ class StoryController extends Controller
 
     public function heartsCount(Story $story)
     {
-        
+
         $hearts = $story->loveit;
         $heartsCount = count($hearts);
-        
-        $html = view('stories.hearts-list')->with(['heartsCount'=>$heartsCount, 'story'=>$story])->render(); 
+
+        $html = view('stories.hearts-list')->with(['heartsCount'=>$heartsCount, 'story'=>$story])->render();
         return response()->json([
             'html' => $html,
             'status' => 'success'
@@ -160,10 +160,22 @@ class StoryController extends Controller
 
     public function heartsAdd(Story $story)
     {
-        $hearts = $story->loveit; 
-        $hearts[] = 1;
+        // $story = Story::find($request->input('data'));
+        $user = auth()->user()->id;
+        $hearts = $story->loveit;
+        dump($user);
+        if (in_array($user, $hearts)){
+            dump($hearts);
+            $hearts = array_filter($hearts, function($number) use ($user) {
+                    return $number !== $user;
+                });
+                dump($hearts);
+        } else {
+        $hearts[] = $user;
+        $story->loveit = $hearts;
+        }
         $story->loveit = $hearts;
         $story->save();
-        
+
     }
 }

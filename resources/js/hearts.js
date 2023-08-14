@@ -40,22 +40,23 @@ export default class Hearts {
         }
     }
 
-    
+
      // Handlers
 
      handleAdd(action) {
-       
-        console.log('piuyi piyui');
-       
-        // axios.post(action.dataset.url)
-        //      .then(res => {
-        //          this.init();
-        //          // this.m.addMessage(res.data.message);
-        //      })
-        //      .catch(err => {
-        //          // this.handleError(err);
-        //      });
+
+        // console.log('piuyi piyui');
+
+        axios.get(action.dataset.url)
+             .then(res => {
+                 this.init();
+                 // this.m.addMessage(res.data.message);
+             })
+             .catch(err => {
+                console.log(action.dataset.url);
+                 // this.handleError(err);
+             });
      }
 
-     
+
 }
