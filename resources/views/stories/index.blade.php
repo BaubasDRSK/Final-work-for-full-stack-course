@@ -16,6 +16,8 @@
                                             @php
                                                 {{
                                                     $image = public_path('images/'.$story->main_img);
+                                                }}
+                                                {{
                                                     $imageSize = getimagesize($image);
                                                 }}
                                             @endphp
@@ -42,11 +44,13 @@
                                 <div class="flex flex-wrap gap-4">
                                     <h4 class="w-full font-extrabold text-black">{{ $story->title }}</h4>
                                     <p class="fw-bold w-full">{{ $story->story }}</p>
-                                    <form action="{{ route('stories-edit', [$story, $stories->currentPage()]) }}"
-                                        method="get" class="">
-                                        <button class="rounded-lg py-3 px-6 bg-indigo-500" type="submit">Edit</button>
-                                        @csrf
-                                    </form>
+                                    @if ($story->author_id == (auth()->user()->id ?? 0))
+                                        <form action="{{ route('stories-edit', [$story, $stories->currentPage()]) }}"
+                                            method="get" class="">
+                                            <button class="rounded-lg py-3 px-6 bg-indigo-500" type="submit">Edit</button>
+                                            @csrf
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                             {{-- TAG input here --}}

@@ -33,7 +33,7 @@
             <main>
                 {{-- {{ $slot }} --}}
 
-                <main class="py-4">
+                <main class="py-4" id='main'>
                     @include('msg.messages')
                     @include('msg.errors')
                     @yield('content')

@@ -49,7 +49,40 @@ export default class Hearts {
 
         axios.get(action.dataset.url)
              .then(res => {
+                if (res['data']['status']=='error'){
+                    console.log(res['data']['error']);
+
+                    // Create a new <div> element with some content
+                    const newDiv = document.createElement('div');
+                    newDiv.innerHTML = ` <div id='animatedDiv' class="info-container alert-danger">
+                                            <div class="info-error">
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        <li>${res['data']['error']}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>`;
+                    const mainDom = document.getElementById('main');
+                    mainDom.insertBefore(newDiv, mainDom.firstChild);
+
+                    setTimeout(() => {
+                        mainDom.removeChild(newDiv);
+                      }, 5000);
+
+                    const animatedElement = document.getElementById('animatedDiv');
+                    function restartAnimation() {
+                    animatedElement.classList.remove('info-container');
+                    void animatedElement.offsetWidth; // Trigger a reflow (optional but can improve reliability)
+                    animatedElement.classList.add('info-container');
+                    }
+
+
+                    restartAnimation();
+
+                }
                  this.init();
+
                  // this.m.addMessage(res.data.message);
              })
              .catch(err => {
