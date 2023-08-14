@@ -123,6 +123,7 @@ class StoryController extends Controller
         $story->title = $request->title;
         $story->story = $request->story;
         $story->goal_amount = $request->amount;
+        
 
         if ($request->file('image')) {
             $file = $request->file('image');
@@ -142,5 +143,27 @@ class StoryController extends Controller
     public function destroy(Story $story)
     {
         //
+    }
+
+    public function heartsCount(Story $story)
+    {
+        
+        $hearts = $story->loveit;
+        $heartsCount = count($hearts);
+        
+        $html = view('stories.hearts-list')->with(['heartsCount'=>$heartsCount, 'story'=>$story])->render(); 
+        return response()->json([
+            'html' => $html,
+            'status' => 'success'
+        ]);
+    }
+
+    public function heartsAdd(Story $story)
+    {
+        $hearts = $story->loveit; 
+        $hearts[] = 1;
+        $story->loveit = $hearts;
+        $story->save();
+        
     }
 }

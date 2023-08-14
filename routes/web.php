@@ -42,6 +42,8 @@ Route::prefix('stories')->name('stories-')->group(function () {
     Route::get('/edit/{story}&{page}' ,[Story::class, 'edit'])->name('edit');
     Route::put('/{story}', [Story::class, 'update'])->name('update');
 
+    Route::get('/hearts/{story}', [Story::class, 'heartsCount'])->name('heartsCount');
+
     // Route::get('/delete/{client}' ,[Story::class, 'delete'])->name('delete');
     // Route::delete('/{client}', [Story::class, 'destroy'])->name('destroy');
 

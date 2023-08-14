@@ -4,7 +4,8 @@
     <div class="container w-full mx-auto">
         <div class="row flex justify-center w-full">
             <div class="card-body flex justify-center flex-wrap">
-                <h2 class="headeris text-4xl font-extrabold text-black text-center mb-14 mt-8 ">Stories that needs Your help</h2>
+                <h2 class="headeris text-4xl font-extrabold text-black text-center mb-14 mt-8 ">Stories that needs Your help
+                </h2>
                 <ul class="flex justify-center w-full flex-wrap gap-6">
                     @forelse($stories as $story)
                         <li class="list-group-item w-full ">
@@ -19,16 +20,23 @@
                                                 }}
                                             @endphp
                                             <div class="pswp-gallery" id="gallery--individual">
-                                                <a href="{{ asset('images/'.$story->main_img)  }}"
-                                                    data-pswp-width="{{$imageSize[0]}}"
-                                                    data-pswp-height="{{$imageSize[1]}}"
-                                                    data-cropped="true"
-                                                    data-pswp-srcset
-
-                                                    target="_blank">
-                                                    <img src="{{ asset('images/'.$story->main_img)  }}" alt="" />
-
-                                                </a>
+                                                <div class="image-heart">
+                                                    <a href="{{ asset('images/' . $story->main_img) }}"
+                                                        data-pswp-width="{{ $imageSize[0] }}"
+                                                        data-pswp-height="{{ $imageSize[1] }}" data-cropped="true"
+                                                        data-pswp-srcset target="_blank">
+                                                        <img src="{{ asset('images/' . $story->main_img) }}" alt="" />
+                                                    </a>
+                                                    @if (empty($story->loveit))
+                                                        <div data-heart-load data-url={{ route('stories-heartsCount', $story) }}  class="heart empty">
+                                                           
+                                                        </div>
+                                                    @else
+                                                        <div data-heart-load data-url={{ route('stories-heartsCount', $story) }} class="heart full">
+                                                            
+                                                        </div>
+                                                    @endif
+                                                </div>
                                             </div>
 
                                         </div>
@@ -39,7 +47,8 @@
                                 <div class="flex flex-wrap gap-4">
                                     <h4 class="w-full font-extrabold text-black">{{ $story->title }}</h4>
                                     <p class="fw-bold w-full">{{ $story->story }}</p>
-                                    <form action="{{route('stories-edit',[$story, $stories->currentPage()])}}" method="get" class="">
+                                    <form action="{{ route('stories-edit', [$story, $stories->currentPage()]) }}"
+                                        method="get" class="">
                                         <button class="rounded-lg py-3 px-6 bg-indigo-500" type="submit">Edit</button>
                                         @csrf
                                     </form>
@@ -47,9 +56,9 @@
                             </div>
                             {{-- TAG input here --}}
                             <div>
-                                    @foreach ($story->tags()->get() as $tag )
-                                        <span class="text-cyan-500 text-sm">#{{$tag->name}}   </span>
-                                    @endforeach
+                                @foreach ($story->tags()->get() as $tag)
+                                    <span class="text-cyan-500 text-sm">#{{ $tag->name }} </span>
+                                @endforeach
                             </div>
                             {{-- TAG end --}}
                         </li>

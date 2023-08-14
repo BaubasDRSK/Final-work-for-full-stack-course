@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('story');
             $table->decimal('goal_amount', 8, 2);
             $table->string('main_img', 255)->nullable();
+            $table->json('loveit')->nullable();
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@ import './bootstrap';
 
 import Tags from './tags';
 import ImageLoader from './imageLoader';
+import Hearts from './hearts';
 
 import PhotoSwipeLightbox from '../../public/vendor/photoswipe/photoswipe-lightbox.esm.js';
 
@@ -14,11 +15,13 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-new Tags();
+new Tags(); //control tags behavior
 
-new ImageLoader();
+new ImageLoader(); // prievie image after select before upload to server
 
+new Hearts();
 
+//PhotoSwipe carousel added
 window.addEventListener('load', _ => {
     const options = {
         gallery: '#gallery--individual a',

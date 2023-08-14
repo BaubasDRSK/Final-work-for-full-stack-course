@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
                 'story' => $faker->text(300),
                 'goal_amount' => $faker->randomFloat(0, 0, 1000),
                 'main_img' => rand(1,3).'.png',
+                'loveit' => json_encode([]),
             ]);
         }
 
