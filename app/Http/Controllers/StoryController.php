@@ -158,10 +158,16 @@ class StoryController extends Controller
         ]);
     }
 
-    public function heartsAdd(Story $story)
+    public function heartsAdd(Story $story, Request $request)
     {
         // $story = Story::find($request->input('data'));
-        $user = auth()->user()->id;
+        $user = auth()->user()->id ?? 0;
+        if ($user == 0) {
+            return response()->json([
+                'error' => 'You must login to add heart',
+                'status' => 'error'
+            ]);
+        }
         $hearts = $story->loveit;
         dump($user);
         if (in_array($user, $hearts)){
