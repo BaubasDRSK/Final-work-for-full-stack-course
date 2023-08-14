@@ -27,15 +27,10 @@
                                                         data-pswp-srcset target="_blank">
                                                         <img src="{{ asset('images/' . $story->main_img) }}" alt="" />
                                                     </a>
-                                                    @if (empty($story->loveit))
-                                                        <div data-heart-load data-url={{ route('stories-heartsCount', $story) }}  class="heart empty">
-                                                           
+                                                        <div data-heart-load data-url={{ route('stories-heartsCount', $story) }}  >
+
                                                         </div>
-                                                    @else
-                                                        <div data-heart-load data-url={{ route('stories-heartsCount', $story) }} class="heart full">
-                                                            
-                                                        </div>
-                                                    @endif
+
                                                 </div>
                                             </div>
 
