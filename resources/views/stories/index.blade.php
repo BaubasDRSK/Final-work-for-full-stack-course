@@ -14,12 +14,8 @@
                                     @if ($story->main_img)
                                         <div class="main-img-container" style="width:200px">
                                             @php
-                                                {{
-                                                    $image = public_path('images/'.$story->main_img);
-                                                }}
-                                                {{
-                                                    $imageSize = getimagesize($image);
-                                                }}
+                                                $image = public_path('images/'.$story->main_img);
+                                                $imageSize = getimagesize($image);
                                             @endphp
                                             <div class="pswp-gallery" id="gallery--individual">
                                                 <div class="image-heart">
@@ -44,6 +40,12 @@
                                 <div class="flex flex-wrap gap-4">
                                     <h4 class="w-full font-extrabold text-black">{{ $story->title }}</h4>
                                     <p class="fw-bold w-full">{{ $story->story }}</p>
+                                    <p class="fw-bold w-full">Goal ammount:  {{ $story->goal_amount }}</p>
+                                    <p class="fw-bold w-full">Total donations:  {{ $story->totalDonations() }} / Left to collect {{ $story->goal_amount - $story->totalDonations() }}</p>
+                                    <p>Donators:</p>
+                                    @foreach ($story->donations()->get() as $donation )
+                                        <p> {{$donation->user->name}} {{$donation->donation_amount}}€</p>
+                                    @endforeach
                                     @if ($story->author_id == (auth()->user()->id ?? 0))
                                         <form action="{{ route('stories-edit', [$story, $stories->currentPage()]) }}"
                                             method="get" class="">

@@ -65,5 +65,14 @@ class DatabaseSeeder extends Seeder
             }
         }
 
+        foreach (range(1,8) as $s) {
+            DB::table('donations')->insert([
+                'story_id' => rand(1,4),
+                'user_id' => rand(1,3),
+                'donation_amount' => rand(5,25),
+            ]);
+        }
+
+
     }
 }

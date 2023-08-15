@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Story::class, 'author_id', 'id');
     }
+
+    public function donations()
+    {
+        return $this->hasMany(Donation::class, 'user_id', 'id');
+    }
 }

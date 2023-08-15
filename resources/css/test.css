@@ -84,6 +84,7 @@ h2.headeris {
     justify-content: center;
     font-size: 1.2rem;
     position: absolute;
+    pointer-events: none;
 }
 
 @keyframes hideMsg {

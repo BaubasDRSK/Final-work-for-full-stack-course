@@ -18,4 +18,14 @@ class Story extends Model
         'loveit' => 'array',
     ];
 
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
+    }
+
+    public function totalDonations()
+    {
+        return $this->donations->sum('donation_amount');
+    }
+
 }
