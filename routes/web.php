@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoryController as Story;
 use App\Http\Controllers\TagController as Tag;
-
+use App\Http\Controllers\DonationController as Donation;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,5 +72,11 @@ Route::prefix('tags')->name('tags-')->group(function () {
 
 });
 
+// Donations
+Route::prefix('donations')->name('donations-')->group(function () {
+
+    Route::post('/donation/{story}', [Donation::class, 'store'])->name('addDonation');
+
+});
 
 require __DIR__.'/auth.php';

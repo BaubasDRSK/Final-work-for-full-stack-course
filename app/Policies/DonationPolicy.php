@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\donation;
+use App\Models\Donation;
 use Illuminate\Auth\Access\Response;
 
 class DonationPolicy
@@ -19,7 +19,7 @@ class DonationPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, donation $donation): bool
+    public function view(User $user, Donation $donation): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class DonationPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, donation $donation): bool
+    public function update(User $user, Donation $donation): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class DonationPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, donation $donation): bool
+    public function delete(User $user, Donation $donation): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class DonationPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, donation $donation): bool
+    public function restore(User $user, Donation $donation): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class DonationPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, donation $donation): bool
+    public function forceDelete(User $user, Donation $donation): bool
     {
         //
     }

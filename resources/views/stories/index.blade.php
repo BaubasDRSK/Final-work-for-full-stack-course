@@ -14,7 +14,7 @@
                                     @if ($story->main_img)
                                         <div class="main-img-container" style="width:200px">
                                             @php
-                                                $image = public_path('images/'.$story->main_img);
+                                                $image = public_path('images/' . $story->main_img);
                                                 $imageSize = getimagesize($image);
                                             @endphp
                                             <div class="pswp-gallery" id="gallery--individual">
@@ -23,12 +23,12 @@
                                                         data-pswp-width="{{ $imageSize[0] }}"
                                                         data-pswp-height="{{ $imageSize[1] }}" data-cropped="true"
                                                         data-pswp-srcset target="_blank">
-                                                        <img src="{{ asset('images/' . $story->main_img) }}" alt="" />
+                                                        <img src="{{ asset('images/' . $story->main_img) }}"
+                                                            alt="" />
                                                     </a>
-                                                        <div data-heart-load data-url={{ route('stories-heartsCount', $story) }}  >
-
-                                                        </div>
-
+                                                    <div data-heart-load
+                                                        data-url={{ route('stories-heartsCount', $story) }}>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -40,19 +40,38 @@
                                 <div class="flex flex-wrap gap-4">
                                     <h4 class="w-full font-extrabold text-black">{{ $story->title }}</h4>
                                     <p class="fw-bold w-full">{{ $story->story }}</p>
-                                    <p class="fw-bold w-full">Goal ammount:  {{ $story->goal_amount }}</p>
-                                    <p class="fw-bold w-full">Total donations:  {{ $story->totalDonations() }} / Left to collect {{ $story->goal_amount - $story->totalDonations() }}</p>
+                                    <p class="fw-bold w-full">Goal ammount: {{ $story->goal_amount }}</p>
+                                    <p class="fw-bold w-full">Total donations amount: {{ $story->totalDonations() ?? 0 }}€ /
+                                        Left to collect {{ $story->goal_amount - $story->totalDonations() }}€</p>
                                     <p>Donators:</p>
-                                    @foreach ($story->donations()->get() as $donation )
-                                        <p> {{$donation->user->name}} {{$donation->donation_amount}}€</p>
-                                    @endforeach
-                                    @if ($story->author_id == (auth()->user()->id ?? 0))
-                                        <form action="{{ route('stories-edit', [$story, $stories->currentPage()]) }}"
-                                            method="get" class="">
-                                            <button class="rounded-lg py-3 px-6 bg-indigo-500" type="submit">Edit</button>
+
+                                    @forelse ($story->donations()->get() as $donation)
+                                        <p> {{ $donation->user->name }} {{ $donation->donation_amount }}€
+                                            @if ($donation->created_at)
+                                                <span class="text-xs">{{ $donation->created_at->format('Y-m-d') }}</span>
+                                            @endif
+                                        </p>
+                                    @empty
+                                        <p>No donations yet.</p>
+                                    @endforelse
+
+                                    <div class="w-full">
+                                        <form method=POST action="{{ route('donations-addDonation', $story) }}">
                                             @csrf
+                                            @if (auth()->user()->id?? 0)
+                                                <label for="currency">Enter donation amount:</label>
+                                                <input type="number" id="currency" name="donationAmount" step="0.01" min="0" max="1000000" pattern="^\d+(\.\d{1,2})?$" title="Please enter donation amount.">
+                                            @endif
+                                            <button class="rounded-lg py-3 px-6 bg-green-500" type="submit">Donate</button>
                                         </form>
-                                    @endif
+                                        @if ($story->author_id == (auth()->user()->id ?? 0))
+                                            <form action="{{ route('stories-edit', [$story, $stories->currentPage()]) }}"
+                                                method="get" class="">
+                                                <button class="rounded-lg py-3 px-6 bg-indigo-500" type="submit">Edit</button>
+                                                @csrf
+                                            </form>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                             {{-- TAG input here --}}
