@@ -16,9 +16,8 @@ use App\Http\Controllers\DonationController as Donation;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [Story::class, 'index'])->name('index');
+
 
 Route::get('/dashboard', [Story::class, 'index'])->name('dashboard');
 
